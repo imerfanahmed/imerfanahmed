@@ -1,12 +1,5 @@
 # 💫 About Me:
-🔭 I’m currently working on Accounting Software<br><br>
-🌱I’m currently learning DevOps and System Design<br><br>
-👨‍💻 All of my projects are available here<br><br>
-🔭 Checkout My Solutions Archive StopStalk<br><br>
-💬 Ask me about Laravel, Best practices, System Design<br><br>
-📫 How to reach me ? erfan.siam98@gmail.com<br><br>
-📄 Know about my experiences from here<br><br>
-📄 Check out my CV View
+seasoned Senior Software Engineer with a knack for making retail tech tick. I specialize in PHP, DevOps, Laravel, and more, with a passion for crafting seamless user experiences. From optimizing backend processes to diving into Docker and Kubernetes, I love tackling challenges head-on. Let's connect and chat tech!
 
 
 ## 🌐 Socials:
