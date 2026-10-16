@@ -141,9 +141,8 @@ export const experience: Job[] = [
     role: 'Full Stack Developer, PHP',
     company: 'Agora Studio',
     location: 'Montreal, Canada',
-    period: 'Apr 2025 — Present',
+    period: 'Apr 2025 — Jun 2026',
     kind: 'Part-time',
-    current: true,
     blurb:
       'Architecting core systems for an animation community platform (Agora.Community) on the TALL stack, with FFmpeg pipelines, Stripe and AWS.',
     points: [
@@ -159,9 +158,8 @@ export const experience: Job[] = [
     role: 'Software Engineer',
     company: 'Magic Office',
     location: 'London, United Kingdom',
-    period: 'Jan 2020 — Present',
+    period: 'Jan 2020 — Dec 2025',
     kind: 'Part-time',
-    current: true,
     blurb:
       'Lead engineer for a cloud-based restaurant POS ecosystem, supporting 100+ UK clients independently.',
     points: [

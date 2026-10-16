@@ -123,8 +123,8 @@ const testimonialFree = [
             <img
               src={`${base}/assets/photo.jpg`}
               alt={`Portrait of ${profile.name}`}
-              width="520"
-              height="620"
+              width="1000"
+              height="1200"
               loading="eager"
               decoding="async"
               fetchpriority="high"
@@ -360,6 +360,23 @@ const testimonialFree = [
     height: 100%;
     object-fit: cover;
     filter: contrast(1.04) saturate(0.92);
+    /* Overscale a touch so the float animation never reveals the grid
+       behind the box: translate alone would expose a gap at the bottom. */
+    scale: 1.03;
+    /* Float animation lives on the img so it composes with the
+       data-reveal transform applied to the parent wrapper. */
+    animation: portrait-float 6.5s var(--ease, ease-in-out) infinite;
+    will-change: transform;
+  }
+
+  @keyframes portrait-float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -10px, 0);
+    }
   }
 
   .portrait-box__fallback {
@@ -450,6 +467,12 @@ const testimonialFree = [
   @media (max-width: 520px) {
     .stats {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .portrait-box__media img {
+      animation: none;
     }
   }
 </style>

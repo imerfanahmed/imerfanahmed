@@ -1,27 +1,100 @@
-# 💫 About Me:
-seasoned Senior Software Engineer with a knack for making retail tech tick. I specialize in PHP, DevOps, Laravel, and more, with a passion for crafting seamless user experiences. From optimizing backend processes to diving into Docker and Kubernetes, I love tackling challenges head-on. Let's connect and chat tech!
+# Erfan Ahmed Siam
 
+Graduate AI Developer at the University of Warwick. I work on applied LLM
+systems, agentic engineering and production infrastructure.
 
-## 🌐 Socials:
-[![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/imerfanahmed) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/ovicorsho) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/imerfanahmed) [![Medium](https://img.shields.io/badge/Medium-12100E?logo=medium&logoColor=white)](https://medium.com/@imerfanahmed) [![Stack Overflow](https://img.shields.io/badge/-Stackoverflow-FE7A16?logo=stack-overflow&logoColor=white)](https://stackoverflow.com/users/imerfanahmed) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?logo=Twitter&logoColor=white)](https://twitter.com/imerfanahmed) [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white)](https://youtube.com/@imerfanahmed)
+[Website](https://imerfanahmed.github.io/imerfanahmed/) ·
+[Blog](https://imerfanahmed.github.io/imerfanahmed/blog/) ·
+[CV](https://imerfanahmed.github.io/imerfanahmed/assets/erfan_cv.pdf)
 
-# 💻 Tech Stack:
-![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white) ![Windows Terminal](https://img.shields.io/badge/Windows%20Terminal-%234D4D4D.svg?style=for-the-badge&logo=windows-terminal&logoColor=white) ![Swift](https://img.shields.io/badge/swift-F54A2A?style=for-the-badge&logo=swift&logoColor=white) ![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white) ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white) ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white) ![Objective-C](https://img.shields.io/badge/OBJECTIVE--C-%233A95E3.svg?style=for-the-badge&logo=apple&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white) ![Linode](https://img.shields.io/badge/linode-00A95C?style=for-the-badge&logo=linode&logoColor=white) ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase) ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white) ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white) ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white) ![DigitalOcean](https://img.shields.io/badge/DigitalOcean-%230167ff.svg?style=for-the-badge&logo=digitalOcean&logoColor=white) ![GithubPages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white) ![WordPress](https://img.shields.io/badge/WordPress-%23117AC9.svg?style=for-the-badge&logo=WordPress&logoColor=white) ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white) ![Ionic](https://img.shields.io/badge/Ionic-%233880FF.svg?style=for-the-badge&logo=Ionic&logoColor=white) ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens) ![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white) ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Vue.js](https://img.shields.io/badge/vue.js-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D) ![Vuetify](https://img.shields.io/badge/Vuetify-1867C0?style=for-the-badge&logo=vuetify&logoColor=AEDDFF) ![Apache](https://img.shields.io/badge/apache-%23D42029.svg?style=for-the-badge&logo=apache&logoColor=white) ![Jenkins](https://img.shields.io/badge/jenkins-%232C5263.svg?style=for-the-badge&logo=jenkins&logoColor=white) ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white) ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-%2300000f.svg?style=for-the-badge&logo=mysql&logoColor=white) ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white) ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) ![Adobe Photoshop](https://img.shields.io/badge/adobe%20photoshop-%2331A8FF.svg?style=for-the-badge&logo=adobe%20photoshop&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![ElasticSearch](https://img.shields.io/badge/-ElasticSearch-005571?style=for-the-badge&logo=elasticsearch) ![Vagrant](https://img.shields.io/badge/vagrant-%231563FF.svg?style=for-the-badge&logo=vagrant&logoColor=white) ![GIT](https://img.shields.io/badge/Git-fc6d26?style=for-the-badge&logo=git&logoColor=white) ![LINUX](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![Alfred](https://img.shields.io/badge/alfred-%235C1F87.svg?style=for-the-badge&logo=alfred) ![CMake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white) ![Jira](https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white) ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white) ![Prezi](https://img.shields.io/badge/Prezi-%23000000.svg?style=for-the-badge&logo=Prezi&logoColor=white) ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
-# 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api?username=imerfanahmed&theme=dark&hide_border=false&include_all_commits=true&count_private=true)<br/>
-![](https://github-readme-streak-stats.herokuapp.com/?user=imerfanahmed&theme=dark&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=imerfanahmed&theme=dark&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
+Coventry, United Kingdom · erfan.siam98@gmail.com
 
-## 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=imerfanahmed&theme=onedark&no-frame=false&no-bg=false&margin-w=4)
+## Now
 
-### ✍️ Random Dev Quote
-![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
+**Graduate AI Developer** — University of Warwick · Aug 2026 to present
 
-### 🔝 Top Contributed Repo
-![](https://github-contributor-stats.vercel.app/api?username=imerfanahmed&limit=5&theme=dark&combine_all_yearly_contributions=true)
+Research-led engineering within the university. I research emerging LLM
+architectures and evaluation methods, act as solution architect for internal AI
+initiatives, and build agentic systems that automate real team workflows.
 
----
-[![](https://visitcount.itsvg.in/api?id=imerfanahmed&icon=0&color=0)](https://visitcount.itsvg.in)
+## Before
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+**Full Stack Developer, PHP** — Agora Studio · Apr 2025 to Jun 2026
+Animation community platform on the TALL stack. FFmpeg and Discord video
+pipelines, Stripe subscriptions, S3 asset storage, ISO-aligned data handling.
+
+**Software Engineer** — Magic Office · Jan 2020 to Dec 2025
+Lead engineer for a cloud restaurant POS ecosystem serving 100+ UK clients.
+Migrated Laravel 5.6 to 12 across 100+ deployments without downtime, replaced
+Pusher with a Go WebSocket engine, held 99.9% uptime on self-managed Linux.
+
+**Infrastructure Consultant** — Data Envelope · Jan 2024 to Dec 2025
+High-scale migrations. Moved a 1.4TB+ newspaper ecosystem between hosts, fixed
+MySQL memory exhaustion, recovered a system after a security breach.
+
+**Lead PHP Developer** — Kodezen · Dec 2023 to Nov 2024
+High-scale WordPress e-commerce and LMS systems, with conditional pricing and
+PCI-compliant recurring billing.
+
+**PHP Developer** — Developer Look · Jul 2025 to Aug 2025
+
+## Selected work
+
+**Agentic Workflow Automation** — University of Warwick
+Agentic LLM systems that plan, call tools and orchestrate multi-step tasks.
+Retrieval grounding, evaluation harnesses, end-to-end process automation.
+
+**RadInsight** — vision-language model
+Fine-tuned Llama 3.2 Vision 11B with LoRA on 750k+ radiology image-text pairs.
+ROUGE-L 0.78, BLEU-4 0.62, CIDEr 1.21, trained under 12GB VRAM.
+
+**Gusher** — Go WebSocket pub/sub server, built as a lightweight Pusher
+replacement. https://github.com/imerfanahmed/gusher
+
+**AvroPHP** — Trie-based Bangla transliteration engine in PHP.
+https://github.com/imerfanahmed/avro-php
+
+## Stack
+
+Applied AI — LLM architecture research, agentic systems, tool calling, RAG,
+prompt engineering and evaluation, LoRA / QLoRA fine-tuning, MCP, solution
+architecture.
+
+Languages — PHP (Laravel), Go, Python, SQL, JavaScript.
+
+Frontend — TALL stack, Tailwind, Alpine.js, Livewire, Vue, Blade, Vite.
+
+Cloud and infrastructure — AWS (S3, EC2, Lambda, Aurora), Azure, Cloudflare,
+Nginx, load balancing, DNS, Linux.
+
+DevOps — Docker, Terraform, GitHub Actions, Bitbucket Pipelines, Git.
+
+Data — MySQL, PostgreSQL, vector databases, knowledge graphs.
+
+## Education
+
+**MSc Cloud & Network Computing Engineering** — University of Staffordshire,
+Feb 2026 to present
+
+**BSc Computer Science & Engineering** — University of Dhaka, 2020 to 2025
+CGPA 3.63 / 4.00
+
+## Elsewhere
+
+GitHub — https://github.com/imerfanahmed
+LinkedIn — https://www.linkedin.com/in/imerfan
+LeetCode — https://leetcode.com/u/imerfanahmed
+Email — erfan.siam98@gmail.com
+
+## This site
+
+The portfolio and blog are an Astro project in [`site/`](site/), deployed to
+GitHub Pages by the workflow in
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+All site content lives in
+[`site/src/data/cv.ts`](site/src/data/cv.ts) — components are presentation
+only. Blog posts are markdown files in
+[`site/src/content/blog/`](site/src/content/blog/); add one, push, and it
+publishes automatically. See [`site/README.md`](site/README.md) for the
+content schemas and deployment notes.

@@ -5,6 +5,10 @@
 # site/public/assets/erfan_cv.pdf, which IS tracked.
 /erfan_cv.pdf
 
+# The portrait source kept locally; the site serves a cropped copy from
+# site/public/assets/photo.jpg, which IS tracked.
+/profile.jpg
+
 # OS noise
 .DS_Store
 Thumbs.db
