@@ -1,0 +1,292 @@
+---
+import { projects } from '../data/cv';
+---
+
+<section class="section" id="projects">
+  <div class="frame">
+    <span aria-hidden="true" class="tick tick-half tick--tl"></span>
+    <span aria-hidden="true" class="tick tick-half tick--tr"></span>
+
+    <div class="section-bar">
+      <p class="section-bar__left hud-label">
+        <span class="section-bar__num">03</span>
+        <span aria-hidden="true" class="section-bar__slash">/</span>
+        <span>Selected Systems &amp; Open Source</span>
+      </p>
+      <p class="section-bar__right hud-label">
+        Agentic LLM · AI Vision · Real-Time Go · Phonetic Engines
+      </p>
+    </div>
+
+    <header class="section__intro" data-reveal>
+      <h2 class="section__title">
+        Things I built because <span class="grad">the alternative was worse.</span>
+      </h2>
+      <p class="section__lede">
+        Each of these started as a real constraint — a bill that was too high, a library
+        that didn't exist, a latency budget that couldn't be met.
+      </p>
+    </header>
+
+    <div class="projects">
+      {projects.map((p, i) => (
+        <article
+          class={`project cell-bar${i === 0 ? ' project--feature' : ''}`}
+          data-reveal
+          style={`--reveal-delay:${i * 70}ms`}
+        >
+          <!-- Card Top Header Bar (exact ArtCraft card top bar pattern) -->
+          <div class="project__bar">
+            <span class="hud-label project__badge">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <p class="hud-label project__kind">{p.kind}</p>
+          </div>
+
+          <!-- Card Body -->
+          <div class="project__body">
+            <div class="project__main">
+              <div class="project__title-row">
+                <h3 class="project__name">
+                  {p.href ? (
+                    <a href={p.href} target="_blank" rel="noopener noreferrer">{p.name}</a>
+                  ) : (
+                    p.name
+                  )}
+                </h3>
+                {p.href && (
+                  <a
+                    class="project__ext invert-block"
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${p.name} repository`}
+                  >
+                    <span class="hud-label">REPO</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M7 17L17 7M7 7h10v10" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+
+              <ul class="project__points" role="list">
+                {p.points.map((pt) => (
+                  <li>{pt}</li>
+                ))}
+              </ul>
+
+              <div class="project__footer">
+                <ul class="project__tags" role="list" aria-label="Technologies">
+                  {p.stack.map((s, idx) => (
+                    <li class={`tech-tag${idx === 0 ? ' tech-tag--accent' : ''}`}>{s}</li>
+                  ))}
+                </ul>
+
+                {p.note && <p class="hud-label project__note">{p.note}</p>}
+              </div>
+            </div>
+
+            {p.metrics && (
+              <dl class="metrics">
+                {p.metrics.map((m) => (
+                  <div class="metrics__cell">
+                    <dt class="hud-label">{m.label}</dt>
+                    <dd>{m.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--line);
+  }
+
+  .project {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    /* Without this, the nowrap .project__kind text forces the card wider
+       than its grid track and the whole page scrolls sideways. */
+    min-width: 0;
+  }
+
+  .project--feature {
+    grid-column: 1 / -1;
+  }
+
+  /* ArtCraft card header strip */
+  .project__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .project__badge {
+    padding: 0.22rem 0.5rem;
+    background: var(--accent-ink);
+    color: #000;
+    font-weight: 700;
+  }
+
+  :global(:root[data-theme='light']) .project__badge {
+    color: #fff;
+  }
+
+  .project__kind {
+    color: var(--fg-faint);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .project__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project--feature .project__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+    gap: 1px;
+    background: var(--line);
+  }
+
+  .project__main {
+    background: var(--bg);
+    padding: clamp(1.6rem, 3vw, 2.25rem);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .project__title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .project__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 1.25rem + 0.8vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--ink-strong);
+  }
+
+  .project__name a:hover {
+    color: var(--accent-ink);
+  }
+
+  .project__ext {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid var(--line);
+    color: var(--fg-muted);
+  }
+
+  .project__points {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 1.25rem;
+    flex: 1;
+  }
+
+  .project__points li {
+    position: relative;
+    padding-left: 1.35rem;
+    color: var(--fg-muted);
+    font-size: 0.93rem;
+    line-height: 1.62;
+  }
+
+  .project__points li::before {
+    content: '▪';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-ink);
+    font-size: 0.8em;
+  }
+
+  .project__footer {
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .project__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .project__note {
+    color: var(--fg-faint);
+  }
+
+  /* ---- 2x2 Hairline Metrics Subgrid ---------------------------------- */
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--line);
+  }
+
+  .metrics__cell {
+    background: var(--bg-sunken);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.65rem;
+  }
+
+  .metrics__cell dt {
+    color: var(--fg-faint);
+  }
+
+  .metrics__cell dd {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 1.3rem + 1vw, 2.35rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    color: var(--accent-ink);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  @media (max-width: 920px) {
+    .projects {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .project--feature .project__body {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

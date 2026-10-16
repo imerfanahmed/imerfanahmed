@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Keep the CV out of search results; it should be shared deliberately.
+Disallow: /assets/erfan_cv.pdf
+
+Sitemap: https://imerfanahmed.github.io/imerfanahmed/sitemap-index.xml

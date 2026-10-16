@@ -1,0 +1,374 @@
+---
+import { profile, socials, nav, cvPath } from '../data/cv';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<section class="section" id="contact">
+  <div class="frame">
+    <span aria-hidden="true" class="tick tick-half tick--tl"></span>
+    <span aria-hidden="true" class="tick tick-half tick--tr"></span>
+
+    <div class="section-bar">
+      <p class="section-bar__left hud-label">
+        <span class="section-bar__num">06</span>
+        <span aria-hidden="true" class="section-bar__slash">/</span>
+        <span>Initiate Contact</span>
+      </p>
+      <p class="section-bar__right hud-label">
+        Direct Channel · Engineering &amp; Infrastructure
+      </p>
+    </div>
+
+    <!-- Centered Call-To-Action Block (matches ArtCraft #start section) -->
+    <div class="contact__cta" data-reveal>
+      <p class="hud-label contact__kicker">Available for Full-Time &amp; Contract</p>
+
+      <h2 class="contact__title">
+        Got something that needs <span class="grad">to keep running?</span>
+      </h2>
+
+      <p class="contact__lede">
+        I'm open to engineering roles and contract work — particularly around Laravel,
+        Go, and the infrastructure that carries them. The fastest way to reach me is email.
+      </p>
+
+      <div class="contact__actions">
+        <a class="btn btn--primary" href={`mailto:${profile.email}`}>
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect width="20" height="16" x="2" y="4" rx="0" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+          {profile.email}
+        </a>
+        <a class="btn invert-block" href={`${base}${cvPath}`} download>
+          Download CV (PDF)
+        </a>
+      </div>
+    </div>
+
+    <!-- 3-Column Hairline Spec Facts Row -->
+    <dl class="contact__facts" data-reveal>
+      <div class="contact__fact cell-bar">
+        <dt class="hud-label">01 / LOCATION</dt>
+        <dd>{profile.location}</dd>
+      </div>
+      <div class="contact__fact cell-bar">
+        <dt class="hud-label">02 / DIRECT LINE</dt>
+        <dd><a href={`tel:${profile.phone.replace(/\s/g, '')}`}>{profile.phone}</a></dd>
+      </div>
+      <div class="contact__fact cell-bar">
+        <dt class="hud-label">03 / CURRENT STATUS</dt>
+        <dd class="contact__status">
+          <i class="contact__dot" aria-hidden="true"></i> Open to engineering opportunities
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- Architectural Multi-Column Hairline Footer (exact ArtCraft footer pattern) -->
+<footer class="footer">
+  <div class="frame">
+    <span aria-hidden="true" class="tick tick-half tick--tl"></span>
+    <span aria-hidden="true" class="tick tick-half tick--tr"></span>
+
+    <div class="footer__grid">
+      <div class="footer__brand-col">
+        <div class="footer__logo">
+          <span class="footer__mark mono">{profile.monogram}</span>
+          <span class="hud-label footer__name">{profile.name}</span>
+        </div>
+        <p class="footer__summary">
+          Full Stack Developer &amp; Software Engineer building high-uptime production systems in PHP, Laravel, Go, and Linux.
+        </p>
+        <a href={`mailto:${profile.email}`} class="hud-label footer__email">
+          {profile.email}
+        </a>
+      </div>
+
+      <nav aria-label="Directory" class="footer__col">
+        <p class="hud-label footer__heading">Index</p>
+        <ul class="footer__list">
+          {nav.map((item) => (
+            <li><a href={`#${item.id}`}>{item.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      <nav aria-label="Socials" class="footer__col">
+        <p class="hud-label footer__heading">Profiles</p>
+        <ul class="footer__list">
+          {socials.map((s) => (
+            <li>
+              <a
+                href={s.href}
+                target={s.href.startsWith('http') ? '_blank' : undefined}
+                rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="footer__col">
+        <p class="hud-label footer__heading">Document</p>
+        <ul class="footer__list">
+          <li><a href={`${base}${cvPath}`} download>Download CV (PDF)</a></li>
+          <li><a href="#top">Return to Top ↑</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="hud-label footer__copy">
+        © <span data-year>{new Date().getFullYear()}</span> {profile.name}
+      </p>
+      <p class="hud-label footer__copy">
+        Built with Astro · Architectural Grid System
+      </p>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top invert-block" type="button" data-to-top aria-label="Back to top">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7" />
+  </svg>
+</button>
+
+<style>
+  .contact__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: clamp(4rem, 9vw, 7rem) var(--gutter);
+    background:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px),
+      var(--bg);
+    background-size: 48px 48px;
+  }
+
+  .contact__kicker {
+    color: var(--fg-faint);
+  }
+
+  .contact__title {
+    margin-top: 1.25rem;
+    max-width: 18ch;
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 1.5rem + 4vw, 4.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+    color: var(--ink-strong);
+  }
+
+  .contact__lede {
+    margin-top: 1.35rem;
+    max-width: 54ch;
+    font-size: 1.05rem;
+    color: var(--fg-muted);
+  }
+
+  .contact__actions {
+    margin-top: 2.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  /* ---- 3-column facts bar -------------------------------------------- */
+
+  .contact__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    border-top: 1px solid var(--line);
+    background: var(--line);
+  }
+
+  .contact__fact {
+    background: var(--bg);
+    padding: 1.5rem var(--gutter);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contact__fact dt {
+    color: var(--fg-faint);
+  }
+
+  .contact__fact dd {
+    font-size: 0.96rem;
+    font-weight: 500;
+    color: var(--ink-strong);
+  }
+
+  .contact__fact a:hover {
+    color: var(--accent-ink);
+  }
+
+  .contact__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-ink) !important;
+  }
+
+  .contact__dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent-ink);
+  }
+
+  /* ---- Architectural Footer ------------------------------------------ */
+
+  .footer {
+    border-top: 1px solid var(--line);
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+  }
+
+  .footer__brand-col,
+  .footer__col {
+    background: var(--bg);
+    padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  }
+
+  .footer__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .footer__mark {
+    display: inline-grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--line-strong);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--ink-strong);
+  }
+
+  .footer__name {
+    color: var(--ink-strong);
+    font-weight: 700;
+  }
+
+  .footer__summary {
+    margin-top: 1rem;
+    max-width: 34ch;
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .footer__email {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: var(--fg-faint);
+    transition: color 0.15s linear;
+  }
+
+  .footer__email:hover {
+    color: var(--ink-strong);
+  }
+
+  .footer__heading {
+    color: var(--fg-faint);
+  }
+
+  .footer__list {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer__list a {
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+    transition: color 0.15s linear;
+  }
+
+  .footer__list a:hover {
+    color: var(--ink-strong);
+  }
+
+  .footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1rem var(--gutter);
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+
+  .footer__copy {
+    color: var(--fg-faint);
+  }
+
+  /* ---- Square Back to Top Button ------------------------------------- */
+
+  .to-top {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 150;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line-strong);
+    border-radius: 0;
+    background: var(--bg);
+    color: var(--fg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.2s linear, transform 0.2s var(--ease), visibility 0.2s,
+      background-color 0.12s linear, color 0.12s linear;
+  }
+
+  .to-top.is-shown {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  @media (max-width: 900px) {
+    .contact__facts {
+      grid-template-columns: 1fr;
+    }
+
+    .footer__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer__brand-col {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

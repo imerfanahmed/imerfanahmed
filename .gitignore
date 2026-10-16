@@ -1,0 +1,10 @@
+# Local tooling config (Serena MCP) — not part of the site.
+.serena/
+
+# The CV source kept locally; the site serves its own copy from
+# site/public/assets/erfan_cv.pdf, which IS tracked.
+/erfan_cv.pdf
+
+# OS noise
+.DS_Store
+Thumbs.db

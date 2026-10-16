@@ -1,0 +1,18 @@
+{
+  "name": "Erfan Ahmed Siam — Software Engineer",
+  "short_name": "Erfan Ahmed Siam",
+  "description": "Portfolio of Erfan Ahmed Siam, full stack developer and software engineer.",
+  "start_url": "/imerfanahmed/",
+  "scope": "/imerfanahmed/",
+  "display": "standalone",
+  "background_color": "#05070d",
+  "theme_color": "#05070d",
+  "icons": [
+    {
+      "src": "/imerfanahmed/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

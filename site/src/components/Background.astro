@@ -1,0 +1,58 @@
+---
+/**
+ * Subtle technical blueprint background layer.
+ * Uses fine architectural grid lines and micro-grain so the foreground
+ * 1px structural hairline frame stays crisp and legible.
+ */
+---
+
+<div class="bg" aria-hidden="true">
+  <div class="bg__blueprint"></div>
+  <div class="bg__scanlines"></div>
+  <div class="bg__vignette"></div>
+</div>
+
+<style>
+  .bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .bg__blueprint {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: center top;
+    opacity: 0.22;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 15%, #000 10%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 15%, #000 10%, transparent 80%);
+  }
+
+  .bg__scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--scanline) 0 1px,
+      transparent 1px 4px
+    );
+    opacity: 0.65;
+  }
+
+  .bg__vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 120% 90% at 50% 0%,
+      transparent 40%,
+      color-mix(in srgb, var(--bg) 92%, transparent) 100%
+    );
+  }
+</style>

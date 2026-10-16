@@ -1,0 +1,199 @@
+---
+import { education, awards } from '../data/cv';
+---
+
+<section class="section" id="education">
+  <div class="frame">
+    <span aria-hidden="true" class="tick tick-half tick--tl"></span>
+    <span aria-hidden="true" class="tick tick-half tick--tr"></span>
+
+    <div class="section-bar">
+      <p class="section-bar__left hud-label">
+        <span class="section-bar__num">05</span>
+        <span aria-hidden="true" class="section-bar__slash">/</span>
+        <span>Education &amp; Recognition</span>
+      </p>
+      <p class="section-bar__right hud-label">
+        Academic Credentials · Competitive Programming
+      </p>
+    </div>
+
+    <div class="edu-split">
+      <!-- Left Column: Academic Degrees -->
+      <div class="edu-col">
+        <div class="edu-col__head" data-reveal>
+          <p class="hud-label edu-col__tag">05.A / ACADEMIC DEGREES</p>
+          <h2 class="edu-col__title">Still studying, <span class="grad">still shipping.</span></h2>
+        </div>
+
+        <ol class="edu-list" role="list">
+          {education.map((e, i) => (
+            <li class="edu-item cell-bar" data-reveal style={`--reveal-delay:${i * 60}ms`}>
+              <div class="edu-item__top">
+                <span class="tech-tag tech-tag--accent">{e.period}</span>
+                <span class="hud-label edu-item__loc">{e.location}</span>
+              </div>
+              <h3 class="edu-item__degree">{e.degree}</h3>
+              <p class="edu-item__school">{e.school}</p>
+              {e.detail && <p class="edu-item__detail mono">{e.detail}</p>}
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <!-- Right Column: Competitive Programming Recognition -->
+      <div class="edu-col">
+        <div class="edu-col__head" data-reveal style="--reveal-delay:60ms">
+          <p class="hud-label edu-col__tag">05.B / RECOGNITION</p>
+          <h2 class="edu-col__title">Competitive <span class="grad">programming.</span></h2>
+        </div>
+
+        <ul class="award-list" role="list">
+          {awards.map((a, i) => (
+            <li class="award-item cell-bar" data-reveal style={`--reveal-delay:${100 + i * 50}ms`}>
+              <span class="hud-label award-item__idx">0{i + 1}</span>
+              <div class="award-item__body">
+                <p class="award-item__title">{a.title}</p>
+                <p class="award-item__detail">{a.detail}</p>
+              </div>
+              <span class="tech-tag">{a.year}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .edu-split {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--line);
+  }
+
+  .edu-col {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edu-col__head {
+    padding: clamp(2rem, 4vw, 3rem) var(--gutter);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .edu-col__tag {
+    color: var(--fg-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .edu-col__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.65rem, 1.2rem + 1.5vw, 2.35rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+    color: var(--ink-strong);
+  }
+
+  .edu-list,
+  .award-list {
+    display: grid;
+    gap: 1px;
+    background: var(--line);
+    flex: 1;
+  }
+
+  .edu-item {
+    background: var(--bg);
+    padding: clamp(1.5rem, 3vw, 2.15rem) var(--gutter);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .edu-item__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .edu-item__loc {
+    color: var(--fg-faint);
+  }
+
+  .edu-item__degree {
+    font-family: var(--font-display);
+    font-size: 1.22rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink-strong);
+  }
+
+  .edu-item__school {
+    margin-top: 0.35rem;
+    color: var(--fg-muted);
+    font-size: 0.94rem;
+  }
+
+  .edu-item__detail {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--line);
+    color: var(--fg-dim);
+    font-size: 0.78rem;
+  }
+
+  .award-item {
+    background: var(--bg);
+    padding: clamp(1.25rem, 2.5vw, 1.75rem) var(--gutter);
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .award-item__idx {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--line);
+    background: var(--bg-sunken);
+    color: var(--accent-ink);
+  }
+
+  .award-item__title {
+    font-family: var(--font-display);
+    font-size: 1.06rem;
+    font-weight: 600;
+    color: var(--ink-strong);
+  }
+
+  .award-item__detail {
+    color: var(--fg-muted);
+    font-size: 0.88rem;
+    margin-top: 0.15rem;
+  }
+
+  @media (max-width: 900px) {
+    .edu-split {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .award-item {
+      grid-template-columns: 32px minmax(0, 1fr);
+    }
+    .award-item .tech-tag {
+      grid-column: 2;
+      width: fit-content;
+    }
+  }
+</style>

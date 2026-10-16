@@ -1,0 +1,455 @@
+---
+import { profile, socials, cvPath } from '../data/cv';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const testimonialFree = [
+  { idx: '01', value: '5+ YRS', label: 'Shipping production systems' },
+  { idx: '02', value: '100+', label: 'UK businesses supported' },
+  { idx: '03', value: '1.4 TB', label: 'Migrated with zero downtime' },
+  { idx: '04', value: '99.9%', label: 'Production uptime maintained' },
+];
+---
+
+<section class="hero" id="top">
+  <div class="frame">
+    <span aria-hidden="true" class="tick tick-half tick--tl"></span>
+    <span aria-hidden="true" class="tick tick-half tick--tr"></span>
+
+    <!-- Sticky HUD Eyebrow Bar -->
+    <div class="section-bar">
+      <p class="section-bar__left hud-label">
+        <span class="section-bar__num">00</span>
+        <span aria-hidden="true" class="section-bar__slash">/</span>
+        <span>Engineering Profile</span>
+      </p>
+      <p class="section-bar__right hud-label">
+        {profile.locationShort} · Applied AI &amp; Infrastructure · Available
+      </p>
+    </div>
+
+    <!-- Main Hero Grid: Left Copy Cell + Right Portrait / Spec Cell -->
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <div class="hero__status-row" data-reveal>
+          <span class="tech-tag tech-tag--accent">
+            <i class="hero__dot" aria-hidden="true"></i>
+            Available for work
+          </span>
+          <span class="tech-tag">{profile.locationShort}</span>
+        </div>
+
+        <h1 class="hero__title" data-reveal style="--reveal-delay:50ms">
+          <span>{profile.role.split(' / ')[0]}.</span>
+          <span class="hero__title-sub">
+            Applied <span class="grad">AI</span> &amp; Infrastructure.
+          </span>
+        </h1>
+
+        <p class="hero__tagline mono" data-reveal style="--reveal-delay:100ms">
+          {profile.tagline}
+        </p>
+
+        <p class="hero__summary" data-reveal style="--reveal-delay:140ms">
+          {profile.summary}
+        </p>
+
+        <div class="hero__actions" data-reveal style="--reveal-delay:180ms">
+          <a class="btn btn--primary" href={`${base}${cvPath}`} download>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 17V3M6 11l6 6 6-6M19 21H5" />
+            </svg>
+            Download CV
+          </a>
+          <a class="btn invert-block" href="#work">
+            Inspect Experience
+          </a>
+          <a class="btn invert-block" href="#projects">
+            Selected Systems
+          </a>
+        </div>
+
+        <!-- Stack Tags -->
+        <div class="hero__stack-block" data-reveal style="--reveal-delay:220ms">
+          <span class="hud-label hero__stack-label">Core Stack</span>
+          <ul class="hero__stack" aria-label="Core technologies">
+            {profile.specialties.map((s) => (
+              <li class="tech-tag">{s}</li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- ArtCraft-style Segmented 1px Action Strip -->
+        <div class="hero__connect" data-reveal style="--reveal-delay:260ms">
+          <span class="hud-label hero__connect-head">Connect</span>
+          <button
+            type="button"
+            class="hero__connect-btn invert-block"
+            data-copy-email={profile.email}
+          >
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect width="14" height="14" x="8" y="8" rx="0" ry="0"></rect>
+              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+            </svg>
+            <span data-copy-label>Copy Email</span>
+          </button>
+          {socials.map((s) => (
+            <a
+              class="hero__connect-btn invert-block"
+              href={s.href}
+              target={s.href.startsWith('http') ? '_blank' : undefined}
+              rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >
+              {s.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Portrait & Technical Spec Column -->
+      <div class="hero__aside" data-reveal style="--reveal-delay:160ms">
+        <div class="portrait-box">
+          <span aria-hidden="true" class="tick tick--tl"></span>
+          <span aria-hidden="true" class="tick tick--tr"></span>
+          <span aria-hidden="true" class="tick tick--bl"></span>
+          <span aria-hidden="true" class="tick tick--br"></span>
+
+          <div class="portrait-box__head">
+            <span class="hud-label">ID // {profile.monogram}-98</span>
+            <span class="hud-label portrait-box__coord">53.0027° N, 2.1794° W</span>
+          </div>
+
+          <div class="portrait-box__media">
+            <img
+              src={`${base}/assets/photo.jpg`}
+              alt={`Portrait of ${profile.name}`}
+              width="520"
+              height="620"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              onerror="this.dataset.failed='true';this.remove()"
+            />
+            <div class="portrait-box__fallback" aria-hidden="true">
+              <span class="portrait-box__monogram">{profile.monogram}</span>
+              <span class="hud-label portrait-box__sub">{profile.name}</span>
+            </div>
+          </div>
+
+          <div class="portrait-box__foot">
+            <span class="hud-label">SYS.STATUS</span>
+            <span class="hud-label portrait-box__live">
+              <i class="hero__dot"></i> ONLINE · OPEN TO ROLES
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4-Column Hairline Metrics Strip -->
+    <ul class="stats" data-reveal style="--reveal-delay:300ms">
+      {testimonialFree.map((s) => (
+        <li class="stats__item cell-bar">
+          <div class="stats__top">
+            <span class="hud-label stats__idx">{s.idx}</span>
+            <span class="hud-label stats__unit">METRIC</span>
+          </div>
+          <span class="stats__value">{s.value}</span>
+          <span class="stats__label">{s.label}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+    gap: 1px;
+    background: var(--line);
+  }
+
+  .hero__copy {
+    background: var(--bg);
+    padding: clamp(2.5rem, 5.5vw, 4.75rem) var(--gutter);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero__status-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--accent-ink);
+  }
+
+  .hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.35rem, 1.5rem + 3.6vw, 4.25rem);
+    line-height: 1.01;
+    letter-spacing: -0.038em;
+    font-weight: 600;
+    color: var(--ink-strong);
+    display: grid;
+    gap: 0.08em;
+  }
+
+  .hero__title-sub {
+    color: var(--fg);
+  }
+
+  .hero__tagline {
+    margin-top: 1.35rem;
+    font-size: 0.95rem;
+    color: var(--fg);
+  }
+
+  .hero__tagline::before {
+    content: '// ';
+    color: var(--accent-ink);
+  }
+
+  .hero__summary {
+    margin-top: 1rem;
+    max-width: 58ch;
+    font-size: 1.04rem;
+    line-height: 1.68;
+    color: var(--fg-muted);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 2rem;
+  }
+
+  /* ---- stack block --------------------------------------------------- */
+
+  .hero__stack-block {
+    margin-top: 2.25rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem 1rem;
+  }
+
+  .hero__stack-label {
+    color: var(--fg-faint);
+  }
+
+  .hero__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  /* ---- segmented 1px connect bar (ArtCraft share-bar pattern) -------- */
+
+  .hero__connect {
+    display: flex;
+    width: fit-content;
+    flex-wrap: wrap;
+    gap: 1px;
+    border: 1px solid var(--line);
+    background: var(--line);
+    margin-top: 1.5rem;
+  }
+
+  .hero__connect-head {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    padding-inline: 0.85rem;
+    background: var(--bg-sunken);
+    color: var(--fg-faint);
+  }
+
+  .hero__connect-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    height: 36px;
+    padding-inline: 0.85rem;
+    background: var(--bg);
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ---- right column / portrait spec box ------------------------------ */
+
+  .hero__aside {
+    background: var(--bg);
+    padding: clamp(2rem, 4vw, 3.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portrait-box {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    border: 1px solid var(--line);
+    background: var(--bg-sunken);
+  }
+
+  .portrait-box__head,
+  .portrait-box__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.65rem 0.9rem;
+    background: var(--bg);
+    color: var(--fg-faint);
+  }
+
+  .portrait-box__head {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .portrait-box__foot {
+    border-top: 1px solid var(--line);
+  }
+
+  .portrait-box__live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--accent-ink);
+  }
+
+  .portrait-box__media {
+    position: relative;
+    aspect-ratio: 5 / 6;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px),
+      var(--bg-sunken);
+    background-size: 32px 32px;
+  }
+
+  .portrait-box__media img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.04) saturate(0.92);
+  }
+
+  .portrait-box__fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 1;
+  }
+
+  .portrait-box__monogram {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--ink-strong);
+    border: 1px solid var(--line-strong);
+    background: var(--bg);
+    padding: 0.4rem 1.1rem;
+  }
+
+  .portrait-box__sub {
+    color: var(--fg-faint);
+  }
+
+  /* ---- 4-column hairline stats strip --------------------------------- */
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    border-top: 1px solid var(--line);
+    background: var(--line);
+  }
+
+  .stats__item {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem var(--gutter);
+    background: var(--bg);
+  }
+
+  .stats__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .stats__idx {
+    color: var(--accent-ink);
+  }
+
+  .stats__unit {
+    color: var(--fg-faint);
+  }
+
+  .stats__value {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: var(--ink-strong);
+  }
+
+  .stats__label {
+    margin-top: 0.5rem;
+    color: var(--fg-muted);
+    font-size: 0.86rem;
+  }
+
+  @media (max-width: 980px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__aside {
+      justify-content: flex-start;
+      padding-inline: var(--gutter);
+    }
+
+    .stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 520px) {
+    .stats {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,117 @@
+---
+import '../styles/global.css';
+import Background from '../components/Background.astro';
+import Nav from '../components/Nav.astro';
+import { profile, socials, cvPath } from '../data/cv';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${profile.name} — ${profile.role}`,
+  description = profile.summary,
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonical = new URL(base + '/', Astro.site).href;
+const ogImage = new URL(`${base}/assets/og.png`, Astro.site).href;
+
+// JSON-LD so the site is machine-readable as a person profile.
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  jobTitle: profile.role,
+  email: `mailto:${profile.email}`,
+  telephone: profile.phone,
+  url: canonical,
+  address: { '@type': 'PostalAddress', addressLocality: 'Stoke-on-Trent', addressCountry: 'GB' },
+  sameAs: socials.filter((s) => s.href.startsWith('http')).map((s) => s.href),
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'University of Staffordshire' },
+    { '@type': 'CollegeOrUniversity', name: 'University of Dhaka' },
+  ],
+  knowsAbout: ['Laravel', 'PHP', 'Go', 'DevOps', 'AWS', 'Docker', 'Linux'],
+};
+---
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={profile.name} />
+    <link rel="canonical" href={canonical} />
+
+    <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f2f1ee" media="(prefers-color-scheme: light)" />
+
+    <!-- Google Fonts: Archivo + Inter + JetBrains Mono for authentic technical HUD typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112.5,500..700;100,500..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={profile.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="apple-touch-icon" href={`${base}/favicon.svg`} />
+    <link rel="manifest" href={`${base}/site.webmanifest`} />
+
+    <!-- CV discoverability -->
+    <link rel="alternate" type="application/pdf" href={`${base}${cvPath}`} title="Erfan Ahmed Siam — CV" />
+
+    <script is:inline>
+      // Swap no-js class and restore saved theme before first paint.
+      document.documentElement.classList.remove('no-js');
+      try {
+        var saved = localStorage.getItem('site-theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      } catch (e) {}
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Background />
+    <Nav />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <script>
+      import '../scripts/behaviours.js';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  #main {
+    position: relative;
+    z-index: 1;
+  }
+</style>

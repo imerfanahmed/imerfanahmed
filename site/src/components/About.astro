@@ -1,0 +1,138 @@
+---
+import { profile } from '../data/cv';
+---
+
+<section class="section" id="about">
+  <div class="frame">
+    <span aria-hidden="true" class="tick tick-half tick--tl"></span>
+    <span aria-hidden="true" class="tick tick-half tick--tr"></span>
+
+    <div class="section-bar">
+      <p class="section-bar__left hud-label">
+        <span class="section-bar__num">01</span>
+        <span aria-hidden="true" class="section-bar__slash">/</span>
+        <span>About &amp; Core Highlights</span>
+      </p>
+      <p class="section-bar__right hud-label">
+        Applied AI · Uptime · Migrations · Low-Latency Systems
+      </p>
+    </div>
+
+    <header class="section__intro" data-reveal>
+      <h2 class="section__title">
+        I work on the parts that are
+        <span class="grad">hard to fake.</span>
+      </h2>
+      <p class="section__lede">
+        Research that has to survive contact with real users, and systems that have to
+        stay up while you change them underneath. The unglamorous middle ground between
+        a promising idea and something a team can actually depend on.
+      </p>
+    </header>
+
+    <ol class="proud" role="list">
+      {profile.highlights.map((item, i) => (
+        <li
+          class="proud__item cell-bar"
+          data-reveal
+          style={`--reveal-delay:${i * 55}ms`}
+        >
+          <div class="proud__top">
+            <span class="proud__badge hud-label">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span class="hud-label proud__tag">PRODUCTION PROOF</span>
+          </div>
+          <h3 class="proud__title">{item.title}</h3>
+          <p class="proud__body">{item.body}</p>
+        </li>
+      ))}
+      <li class="proud__item proud__item--summary cell-bar" data-reveal style="--reveal-delay:280ms">
+        <div class="proud__top">
+          <span class="proud__badge proud__badge--accent hud-label">06</span>
+          <span class="hud-label proud__tag">OPERATING PRINCIPLE</span>
+        </div>
+        <h3 class="proud__title">End-to-end ownership</h3>
+        <p class="proud__body">
+          From schema design and application code in PHP/Go to Dockerized CI/CD pipelines,
+          Linux kernel tuning, and zero-downtime cutovers.
+        </p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<style>
+  .proud {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--line);
+  }
+
+  .proud__item {
+    background: var(--bg);
+    padding: clamp(1.6rem, 3vw, 2.35rem);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .proud__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.35rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .proud__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--line);
+    color: var(--accent-ink);
+    background: var(--bg-sunken);
+  }
+
+  .proud__badge--accent {
+    background: var(--invert-bg);
+    color: var(--invert-fg);
+    border-color: var(--invert-bg);
+  }
+
+  .proud__tag {
+    color: var(--fg-faint);
+  }
+
+  .proud__title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    color: var(--ink-strong);
+  }
+
+  .proud__body {
+    margin-top: 0.75rem;
+    color: var(--fg-muted);
+    font-size: 0.94rem;
+    line-height: 1.68;
+  }
+
+  @media (max-width: 1024px) {
+    .proud {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .proud {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

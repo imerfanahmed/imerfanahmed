@@ -1,0 +1,247 @@
+---
+import { experience } from '../data/cv';
+---
+
+<section class="section" id="work">
+  <div class="frame">
+    <span aria-hidden="true" class="tick tick-half tick--tl"></span>
+    <span aria-hidden="true" class="tick tick-half tick--tr"></span>
+
+    <div class="section-bar">
+      <p class="section-bar__left hud-label">
+        <span class="section-bar__num">02</span>
+        <span aria-hidden="true" class="section-bar__slash">/</span>
+        <span>Production Experience</span>
+      </p>
+      <p class="section-bar__right hud-label">
+        {experience.length} Roles · University · Agency · Consultancy
+      </p>
+    </div>
+
+    <header class="section__intro" data-reveal>
+      <h2 class="section__title">
+        Five years of production, <span class="grad">now in applied AI.</span>
+      </h2>
+      <p class="section__lede">
+        Currently a Graduate AI Developer at the University of Warwick, researching LLM
+        architectures and building agentic systems — alongside five years of shipping
+        production software across the UK, Canada, the US and Bangladesh.
+      </p>
+    </header>
+
+    <ol class="jobs" role="list">
+      {experience.map((job, i) => (
+        <li class="job cell-bar" data-reveal style={`--reveal-delay:${i * 50}ms`}>
+          <!-- Left Spec Column -->
+          <div class="job__meta-col">
+            <div class="job__index-row">
+              <span class="hud-label job__idx">{String(i + 1).padStart(2, '0')}</span>
+              <span class="tech-tag">{job.kind}</span>
+              {job.current && (
+                <span class="tech-tag tech-tag--accent">
+                  <i class="job__live-dot" aria-hidden="true"></i> ACTIVE
+                </span>
+              )}
+            </div>
+
+            <div class="job__company-block">
+              {job.logo && (
+                <span class={`job__logo${job.logo.plate === 'none' ? ' job__logo--bare' : ''}`}>
+                  <img
+                    src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}${job.logo.src}`}
+                    alt={job.logo.alt}
+                    width="132"
+                    height="35"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+              )}
+              <p class="job__company">
+                {job.href ? (
+                  <a href={job.href} target="_blank" rel="noopener noreferrer">{job.company}</a>
+                ) : (
+                  job.company
+                )}
+              </p>
+              <p class="hud-label job__location">{job.location}</p>
+            </div>
+
+            <p class="hud-label job__period">{job.period}</p>
+          </div>
+
+          <!-- Right Engineering Details Column -->
+          <div class="job__content-col">
+            <h3 class="job__role">{job.role}</h3>
+
+            {job.blurb && <p class="job__blurb">{job.blurb}</p>}
+
+            <ul class="job__points" role="list">
+              {job.points.map((p) => (
+                <li>{p}</li>
+              ))}
+            </ul>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .jobs {
+    display: grid;
+    gap: 1px;
+    background: var(--line);
+  }
+
+  .job {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 1px;
+    background: var(--line);
+  }
+
+  .job__meta-col {
+    background: var(--bg);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .job__index-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .job__idx {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem 0.5rem;
+    background: var(--invert-bg);
+    color: var(--invert-fg);
+    font-weight: 700;
+  }
+
+  .job__live-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background: var(--accent-ink);
+  }
+
+  .job__company {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--ink-strong);
+  }
+
+  .job__company a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s var(--ease-soft);
+  }
+
+  .job__company a:hover {
+    color: var(--accent-ink);
+  }
+
+  /* Company mark sits above the name on a light plate, because the
+     source wordmarks are monochrome dark and would vanish on the
+     dark background. `plate: 'none'` drops the plate for light-on-dark
+     logos that don't need it. */
+  .job__logo {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    margin-bottom: 0.85rem;
+    padding: 0.5rem 0.7rem;
+    background: var(--invert-bg);
+    color: var(--invert-fg);
+  }
+
+  .job__logo--bare {
+    padding: 0;
+    background: none;
+  }
+
+  .job__logo img {
+    display: block;
+    height: 24px;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .job__location {
+    margin-top: 0.35rem;
+    color: var(--fg-faint);
+  }
+
+  .job__period {
+    color: var(--fg-muted);
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .job__content-col {
+    background: var(--bg);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+  }
+
+  .job__role {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.55rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--ink-strong);
+  }
+
+  .job__blurb {
+    margin-top: 0.75rem;
+    padding-left: 0.9rem;
+    border-left: 2px solid var(--accent-ink);
+    color: var(--fg-muted);
+    font-size: 0.95rem;
+  }
+
+  .job__points {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 1.25rem;
+  }
+
+  .job__points li {
+    position: relative;
+    padding-left: 1.35rem;
+    color: var(--fg-muted);
+    font-size: 0.93rem;
+    line-height: 1.62;
+  }
+
+  .job__points li::before {
+    content: '▪';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-ink);
+    font-size: 0.8em;
+  }
+
+  @media (max-width: 860px) {
+    .job {
+      grid-template-columns: 1fr;
+    }
+
+    .job__meta-col {
+      gap: 1rem;
+      padding-bottom: 1.25rem;
+    }
+  }
+</style>
