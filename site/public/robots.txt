@@ -4,4 +4,6 @@ Allow: /
 # Keep the CV out of search results; it should be shared deliberately.
 Disallow: /assets/erfan_cv.pdf
 
+# AI agents: a machine-readable Markdown profile lives at /markdown.md,
+# generated from the same source as the site.
 Sitemap: https://imerfanahmed.github.io/imerfanahmed/sitemap-index.xml

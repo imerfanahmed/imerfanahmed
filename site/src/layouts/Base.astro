@@ -33,7 +33,23 @@ const personSchema = {
     { '@type': 'CollegeOrUniversity', name: 'University of Staffordshire' },
     { '@type': 'CollegeOrUniversity', name: 'University of Dhaka' },
   ],
-  knowsAbout: ['Laravel', 'PHP', 'Go', 'DevOps', 'AWS', 'Docker', 'Linux'],
+  knowsAbout: [
+    'Applied LLM systems',
+    'Agentic AI',
+    'Retrieval augmented generation',
+    'Prompt engineering',
+    'LLM evaluation',
+    'Fine-tuning (LoRA / QLoRA)',
+    'Model Context Protocol',
+    'Solution architecture',
+    'Laravel',
+    'PHP',
+    'Go',
+    'DevOps',
+    'AWS',
+    'Docker',
+    'Linux',
+  ],
 };
 ---
 
@@ -79,6 +95,9 @@ const personSchema = {
 
     <!-- CV discoverability -->
     <link rel="alternate" type="application/pdf" href={`${base}${cvPath}`} title="Erfan Ahmed Siam — CV" />
+
+    <!-- Machine-readable Markdown profile for AI agents / LLM crawlers -->
+    <link rel="alternate" type="text/markdown" href={`${base}/markdown.md`} title="Erfan Ahmed Siam — Markdown profile" />
 
     <script is:inline>
       // Swap no-js class and restore saved theme before first paint.

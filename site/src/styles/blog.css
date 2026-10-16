@@ -312,10 +312,22 @@
    -------------------------------------------------------------------------- */
 
 .prose {
-  max-width: 74ch;
+  /* No cap here: media needs to reach the shell's full width. The reading
+     measure is applied to the text elements below instead, so screenshots
+     can be wider than a paragraph without breaking line length. */
   color: var(--fg-muted);
   font-size: 1.02rem;
   line-height: 1.75;
+}
+
+/* Reading measure for text. Media elements opt out and take the full column. */
+.prose > * {
+  max-width: 74ch;
+}
+
+.prose p:has(> img:only-child),
+.prose figure {
+  max-width: none;
 }
 
 .prose > * + * {
@@ -507,10 +519,12 @@
   white-space: nowrap;
 }
 
-/* images */
+/* images — screenshots of a wide desktop get the full column width, while
+   surrounding text keeps its comfortable 74ch measure. */
 .prose img {
   border: 1px solid var(--line);
   height: auto;
+  width: 100%;
 }
 
 .prose figure {

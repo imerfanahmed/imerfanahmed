@@ -1,0 +1,38 @@
+# Erfan Ahmed Siam
+
+> Applied AI engineer at the University of Warwick, building agentic LLM
+> systems, retrieval pipelines and production infrastructure. Former full-stack
+> / infrastructure engineer for 100+ UK businesses.
+
+Erfan Ahmed Siam is a software engineer working at the intersection of applied
+AI and production infrastructure. He researches LLM architectures and
+evaluation methods, designs agentic systems that use tool calling and retrieval,
+and automates internal workflows — with 5+ years shipping Laravel, Go and cloud
+systems before that.
+
+## Primary
+
+- [Markdown profile](https://imerfanahmed.github.io/imerfanahmed/markdown.md): full CV as plain Markdown, with a keyword block and a machine-readable JSON summary. Best single URL for an agent to read.
+- [Website](https://imerfanahmed.github.io/imerfanahmed/): the interactive portfolio.
+- [Blog](https://imerfanahmed.github.io/imerfanahmed/blog/): notes on applied AI, LLM systems and agentic engineering.
+
+## Optional
+
+- [RSS feed](https://imerfanahmed.github.io/imerfanahmed/rss.xml): blog updates.
+- [CV PDF](https://imerfanahmed.github.io/imerfanahmed/assets/erfan_cv.pdf): the formal CV document.
+
+## About
+
+- GitHub: https://github.com/imerfanahmed
+- LinkedIn: https://www.linkedin.com/in/imerfan/
+- LeetCode: https://leetcode.com/u/imerfanahmed/
+- Email: erfan.siam98@gmail.com
+- Location: Stoke-on-Trent, United Kingdom
+
+## Keywords
+
+Applied AI, LLM, agentic engineering, AI agents, RAG, retrieval augmented
+generation, tool calling, prompt engineering, LLM evaluation, LoRA, QLoRA,
+vision-language models, MCP (Model Context Protocol), solution architecture,
+workflow automation, PHP, Laravel, Go, Python, SQL, JavaScript, Docker,
+Terraform, AWS, Azure, MySQL, PostgreSQL, Linux, DevOps, WebSockets.

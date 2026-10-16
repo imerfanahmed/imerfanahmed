@@ -1,0 +1,151 @@
+---
+import Blog from '../layouts/Blog.astro';
+import { buildMarkdownProfile } from '../lib/markdown';
+
+/**
+ * Readable version of the agent-facing Markdown profile.
+ *
+ * The raw file — the one to hand to LLM crawlers and RAG indexers — lives at
+ * `/markdown.md`. This page just presents the same text for humans and offers
+ * a copy button plus prominent links to the raw URL.
+ */
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const markdown = buildMarkdownProfile();
+
+const pageTitle = 'Markdown — Erfan Ahmed Siam';
+const pageDescription =
+  'Machine-readable Markdown profile of Erfan Ahmed Siam, for AI agents, LLM crawlers and retrieval systems.';
+---
+
+<Blog title={pageTitle} description={pageDescription} path="/markdown/">
+  <div class="blog-frame markdown-frame">
+    <div class="blog-head">
+      <p class="hud-label section-bar__left">
+        <span class="section-bar__num">08</span>
+        <span aria-hidden="true">/</span>
+        <span>Markdown</span>
+      </p>
+      <div class="blog-head__right hud-label">
+        <span>Agent-readable</span>
+        <a class="blog-head__rss" href={`${base}/markdown.md`}>
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 4v12m0 0-4-4m4 4 4-4M5 20h14"></path>
+          </svg>
+          Raw .md
+        </a>
+      </div>
+    </div>
+
+    <div class="blog-intro">
+      <h1 class="blog-intro__title">Markdown profile.</h1>
+      <p class="blog-intro__lede">
+        A plain-text version of this site, built for AI agents and retrieval
+        systems. It carries a keyword block, a machine-readable JSON summary and
+        stable section headings — all generated from the same source as the CV,
+        so it never drifts.
+      </p>
+
+      <div class="md-actions">
+        <a class="md-btn md-btn--primary" href={`${base}/markdown.md`}>
+          Open raw markdown
+        </a>
+        <button class="md-btn" type="button" data-copy-md>Copy markdown</button>
+        <span class="tech-tag">{markdown.length.toLocaleString()} bytes</span>
+      </div>
+    </div>
+
+    <pre class="md-raw" id="md-raw" aria-label="Markdown profile">{markdown}</pre>
+
+    <div class="post-nav">
+      <a class="post-nav__item" href={`${base}/`}>
+        <span class="hud-label post-nav__label">← Back</span>
+        <span class="post-nav__title">Home</span>
+      </a>
+      <a class="post-nav__item" href={`${base}/blog/`}>
+        <span class="hud-label post-nav__label">Next →</span>
+        <span class="post-nav__title">Blog</span>
+      </a>
+    </div>
+  </div>
+</Blog>
+
+<style>
+  .md-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .md-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.95rem;
+    border: 1px solid var(--line, rgba(255, 255, 255, 0.14));
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .md-btn:hover {
+    border-color: var(--accent, #7c5cff);
+  }
+
+  .md-btn--primary {
+    border-color: var(--accent, #7c5cff);
+  }
+
+  .md-btn[data-copied] {
+    border-color: var(--accent, #7c5cff);
+    opacity: 0.75;
+  }
+
+  .md-raw {
+    margin-top: 2rem;
+    padding: 1.25rem 1.35rem;
+    border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.22);
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-x: auto;
+    max-height: 70vh;
+    overflow-y: auto;
+    tab-size: 2;
+  }
+</style>
+
+<script>
+  // Copy button, with a short-lived confirmation state.
+  const btn = document.querySelector<HTMLButtonElement>('[data-copy-md]');
+  const pre = document.getElementById('md-raw');
+  if (btn && pre) {
+    btn.addEventListener('click', async () => {
+      const text = pre.textContent ?? '';
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = 'Copied';
+        btn.dataset.copied = 'true';
+        setTimeout(() => {
+          btn.textContent = 'Copy markdown';
+          delete btn.dataset.copied;
+        }, 1600);
+      } catch {
+        btn.textContent = 'Copy failed';
+        setTimeout(() => {
+          btn.textContent = 'Copy markdown';
+        }, 1600);
+      }
+    });
+  }
+</script>

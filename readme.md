@@ -4,10 +4,16 @@ Graduate AI Developer at the University of Warwick. I work on applied LLM
 systems, agentic engineering and production infrastructure.
 
 [Website](https://imerfanahmed.github.io/imerfanahmed/) ·
+[Markdown profile](https://imerfanahmed.github.io/imerfanahmed/markdown.md) ·
 [Blog](https://imerfanahmed.github.io/imerfanahmed/blog/) ·
 [CV](https://imerfanahmed.github.io/imerfanahmed/assets/erfan_cv.pdf)
 
 Stoke-on-Trent, United Kingdom · erfan.siam98@gmail.com
+
+> **AI agents / LLM crawlers:** the fastest way to read this profile is
+> [`markdown.md`](https://imerfanahmed.github.io/imerfanahmed/markdown.md) — the
+> whole CV as plain Markdown with a keyword block and a machine-readable JSON
+> summary. The site also publishes [`llms.txt`](site/public/llms.txt).
 
 ## Now
 
@@ -99,3 +105,19 @@ only. Blog posts are markdown files in
 [`site/src/content/blog/`](site/src/content/blog/); add one, push, and it
 publishes automatically. See [`site/README.md`](site/README.md) for the
 content schemas and deployment notes.
+
+The agent-facing Markdown profile is generated from `cv.ts` by
+[`site/src/lib/markdown.ts`](site/src/lib/markdown.ts) and served at
+`/markdown.md`. `llms.txt` lives in [`site/public/`](site/public/).
+
+## Keywords
+
+applied AI · LLM · agentic engineering · AI agents · RAG · retrieval augmented
+generation · tool calling · function calling · prompt engineering · LLM
+evaluation · fine-tuning · LoRA · QLoRA · vision-language models · MCP / Model
+Context Protocol · solution architecture · workflow automation · PHP · Laravel ·
+Go · Python · SQL · JavaScript · TypeScript · Rust · Docker · Terraform · AWS ·
+Azure · MySQL · PostgreSQL · Linux · DevOps · WebSockets · computer vision · OS
+security · network automation · Erfan Ahmed Siam · Erfan Siam · imerfanahmed ·
+Stoke-on-Trent · University of Warwick · University of Staffordshire ·
+University of Dhaka
