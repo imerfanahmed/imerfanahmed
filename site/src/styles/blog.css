@@ -1,0 +1,556 @@
+/* ==========================================================================
+   blog — index, post prose, and markdown element styling
+   Built entirely on the tokens in global.css so it inherits the theme
+   (including the light-mode toggle) without duplicating colours.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   shared page chrome for blog routes
+   -------------------------------------------------------------------------- */
+
+.blog-main {
+  position: relative;
+  padding-top: calc(var(--nav-h) + clamp(3rem, 8vw, 6rem));
+  padding-bottom: clamp(4rem, 9vw, 7rem);
+}
+
+.blog-frame {
+  position: relative;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+
+/* Header strip mirroring the section bars used on the home page. */
+.blog-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: 0.85rem clamp(1.1rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.blog-head__right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  color: var(--fg-faint);
+}
+
+.blog-head__rss {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--fg-dim);
+  transition: color 0.2s var(--ease-soft);
+}
+
+.blog-head__rss:hover {
+  color: var(--accent-ink);
+}
+
+/* Topic clouds (index intro and post cards share these). */
+.blog-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 1.4rem;
+}
+
+.blog-tag-count {
+  opacity: 0.6;
+  margin-left: 0.15em;
+}
+
+.blog-intro {
+  padding: clamp(1.6rem, 4vw, 3rem) clamp(1.1rem, 3vw, 2rem) 0;
+  max-width: 68ch;
+}
+
+.blog-intro__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  color: var(--ink-strong);
+  text-wrap: balance;
+}
+
+.blog-intro__lede {
+  margin-top: 1.1rem;
+  color: var(--fg-muted);
+}
+
+/* --------------------------------------------------------------------------
+   index: post list
+   -------------------------------------------------------------------------- */
+
+.post-list {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--line);
+}
+
+.post-card {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 1px;
+  background: var(--bg);
+  min-width: 0;
+  transition: background-color 0.22s var(--ease-soft);
+}
+
+.post-card:hover {
+  background: var(--bg-raised);
+}
+
+.post-card__meta {
+  padding: clamp(1.2rem, 2.5vw, 1.75rem);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.post-card__date {
+  color: var(--fg-faint);
+}
+
+.post-card__stats {
+  color: var(--fg-faint);
+  font-size: 0.72rem;
+}
+
+.post-card__body {
+  padding: clamp(1.2rem, 2.5vw, 1.75rem);
+  min-width: 0;
+}
+
+.post-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.05rem + 0.7vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--ink-strong);
+}
+
+.post-card__title a:hover {
+  color: var(--accent-ink);
+}
+
+.post-card__desc {
+  margin-top: 0.6rem;
+  color: var(--fg-muted);
+  font-size: 0.94rem;
+}
+
+.post-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 720px) {
+  .post-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .post-card__meta {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+/* Empty state when no posts exist yet. */
+.post-empty {
+  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.1rem, 3vw, 2rem);
+  color: var(--fg-dim);
+  text-align: center;
+}
+
+.post-empty__hint {
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
+  color: var(--fg-faint);
+}
+
+.post-empty__hint code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  color: var(--fg-muted);
+}
+
+/* --------------------------------------------------------------------------
+   post page
+   -------------------------------------------------------------------------- */
+
+.post-shell {
+  padding: clamp(1.6rem, 4vw, 3.25rem) clamp(1.1rem, 4vw, 3.5rem);
+}
+
+.post-header {
+  max-width: 74ch;
+  padding-bottom: clamp(1.4rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.post-header__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 1.3rem + 2.4vw, 3.1rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+  color: var(--ink-strong);
+  margin-top: 0.9rem;
+  text-wrap: balance;
+}
+
+.post-header__desc {
+  margin-top: 1rem;
+  color: var(--fg-muted);
+  font-size: 1.02rem;
+}
+
+.post-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 1.35rem;
+  color: var(--fg-faint);
+}
+
+.post-header__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+/* Back link. */
+.post-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--fg-dim);
+  transition: color 0.2s var(--ease-soft);
+}
+
+.post-back:hover {
+  color: var(--accent-ink);
+}
+
+/* Prev / next pagination. */
+.post-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.post-nav__item {
+  background: var(--bg);
+  padding: clamp(1.1rem, 2.5vw, 1.6rem);
+  min-width: 0;
+  transition: background-color 0.22s var(--ease-soft);
+}
+
+.post-nav__item:hover {
+  background: var(--bg-raised);
+}
+
+.post-nav__item--next {
+  text-align: right;
+}
+
+.post-nav__label {
+  color: var(--fg-faint);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.post-nav__title {
+  color: var(--ink-strong);
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+
+.post-nav__item--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@media (max-width: 620px) {
+  .post-nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .post-nav__item--next {
+    text-align: left;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   prose — styles the HTML that markdown compiles to
+   -------------------------------------------------------------------------- */
+
+.prose {
+  max-width: 74ch;
+  color: var(--fg-muted);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.prose > * + * {
+  margin-top: 1.35em;
+}
+
+/* headings */
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-display);
+  color: var(--ink-strong);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.25;
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+}
+
+.prose h2 {
+  font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.85rem);
+  margin-top: 2.6em;
+  padding-top: 1.4em;
+  border-top: 1px solid var(--line);
+}
+
+.prose h3 {
+  font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  margin-top: 2.1em;
+}
+
+.prose h4 {
+  font-size: 1.05rem;
+  margin-top: 1.8em;
+}
+
+/* the first heading after the header shouldn't re-add a top rule */
+.prose > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* links */
+.prose a {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent-ink) 40%, transparent);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s var(--ease-soft);
+}
+
+.prose a:hover {
+  text-decoration-color: var(--accent-ink);
+}
+
+/* emphasis */
+.prose strong {
+  color: var(--ink-strong);
+  font-weight: 600;
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose del {
+  color: var(--fg-faint);
+}
+
+/* lists */
+.prose ul,
+.prose ol {
+  padding-left: 1.4rem;
+  list-style: revert;
+}
+
+.prose li + li {
+  margin-top: 0.45em;
+}
+
+.prose li::marker {
+  color: var(--accent-ink);
+}
+
+.prose ul ul,
+.prose ol ol,
+.prose ul ol,
+.prose ol ul {
+  margin-top: 0.45em;
+}
+
+/* blockquote */
+.prose blockquote {
+  border-left: 2px solid var(--accent-ink);
+  padding-left: 1.15rem;
+  color: var(--fg-dim);
+  font-style: italic;
+}
+
+.prose blockquote > * + * {
+  margin-top: 0.9em;
+}
+
+/* inline code */
+.prose :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.15em 0.42em;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  color: var(--ink-strong);
+  white-space: break-spaces;
+  /* long inline code should wrap, not force the page sideways */
+  overflow-wrap: anywhere;
+}
+
+/* code blocks — Shiki emits inline colours; we own the frame. */
+.prose pre {
+  margin-top: 1.6em;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--line);
+  background: var(--bg-sunken) !important;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  /* keep the horizontal scrollbar inside the box */
+  max-width: 100%;
+  tab-size: 2;
+}
+
+.prose pre code {
+  font-family: var(--font-mono);
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Shiki's dual-theme output sets both light and dark vars. */
+.prose pre.astro-code,
+.prose pre.astro-code span {
+  color: var(--shiki-dark, inherit);
+  font-style: var(--shiki-dark-font-style, inherit);
+  font-weight: var(--shiki-dark-font-weight, inherit);
+  text-decoration: var(--shiki-dark-text-decoration, inherit);
+}
+
+:root[data-theme='light'] .prose pre.astro-code,
+:root[data-theme='light'] .prose pre.astro-code span {
+  color: var(--shiki-light, inherit);
+  font-style: var(--shiki-light-font-style, inherit);
+  font-weight: var(--shiki-light-font-weight, inherit);
+  text-decoration: var(--shiki-light-text-decoration, inherit);
+}
+
+:root[data-theme='light'] .prose pre {
+  background: var(--bg-sunken) !important;
+}
+
+/* horizontal rule */
+.prose hr {
+  border: 0;
+  height: 1px;
+  background: var(--line);
+  margin-block: 2.4em;
+}
+
+/* tables */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--line);
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  color: var(--ink-strong);
+  font-weight: 600;
+  background: var(--bg-2);
+  white-space: nowrap;
+}
+
+/* images */
+.prose img {
+  border: 1px solid var(--line);
+  height: auto;
+}
+
+.prose figure {
+  margin-inline: 0;
+}
+
+.prose figcaption {
+  margin-top: 0.6rem;
+  color: var(--fg-faint);
+  font-size: 0.85rem;
+}
+
+/* task lists (GFM) */
+.prose input[type='checkbox'] {
+  margin-right: 0.45rem;
+  accent-color: var(--accent-ink);
+}
+
+/* keyboard */
+.prose kbd {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  padding: 0.15em 0.45em;
+  border: 1px solid var(--line-strong);
+  border-bottom-width: 2px;
+  background: var(--bg-2);
+  color: var(--ink-strong);
+}
+
+/* anchor links from rehype-autolink-style headings, if ever added */
+.prose .anchor {
+  color: var(--fg-faint);
+  text-decoration: none;
+  margin-left: 0.4rem;
+  opacity: 0;
+  transition: opacity 0.2s var(--ease-soft);
+}
+
+.prose h2:hover .anchor,
+.prose h3:hover .anchor,
+.prose h4:hover .anchor {
+  opacity: 1;
+}

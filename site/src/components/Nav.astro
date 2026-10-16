@@ -1,15 +1,32 @@
 ---
 import { nav, profile, socials, cvPath } from '../data/cv';
 
+interface Props {
+  /**
+   * When true, in-page nav links resolve against the site root
+   * (`/imerfanahmed/#about`) instead of the current document, and the brand
+   * only resets scroll rather than navigating. Used by sub-pages such as the
+   * blog, where a bare `#about` would go nowhere.
+   */
+  absolute?: boolean;
+}
+
+const { absolute = false } = Astro.props;
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const github = socials.find((s) => s.label === 'GitHub');
+
+// On the home page prefer a real link to `/` so it works even if the URL has
+// a hash; the smooth-scroll handler takes over when we're already there.
+const homeHref = absolute ? `${base}/` : '#top';
+const anchor = (id: string) => (absolute ? `${base}/#${id}` : `#${id}`);
 ---
 
 <header class="nav" data-nav>
   <div class="nav__bar">
     <!-- Left cluster: Brand cell + Horizontal HUD links -->
     <div class="nav__left">
-      <a class="nav__brand invert-block" href="#top" aria-label={`${profile.name} — back to top`}>
+      <a class="nav__brand invert-block" href={homeHref} aria-label={`${profile.name} — home`}>
         <span class="nav__mark mono" aria-hidden="true">{profile.monogram}</span>
         <span class="nav__name hud-label">{profile.name}</span>
       </a>
@@ -18,7 +35,12 @@ const github = socials.find((s) => s.label === 'GitHub');
         <ul class="nav__list">
           {nav.map((item, i) => (
             <li class="nav__item">
-              <a href={`#${item.id}`} data-nav-link class="nav__link hud-label">
+              <a
+                href={anchor(item.id)}
+                data-nav-link
+                class="nav__link hud-label"
+                data-section={item.id}
+              >
                 <span class="nav__link-pill">
                   <span class="nav__link-idx" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                   {item.label}
@@ -26,6 +48,20 @@ const github = socials.find((s) => s.label === 'GitHub');
               </a>
             </li>
           ))}
+          <li class="nav__item">
+            <a
+              href={`${base}/blog/`}
+              class:list={['nav__link', 'hud-label', absolute && 'is-active']}
+              aria-current={absolute ? 'page' : undefined}
+            >
+              <span class="nav__link-pill">
+                <span class="nav__link-idx" aria-hidden="true">
+                  {String(nav.length + 1).padStart(2, '0')}
+                </span>
+                Blog
+              </span>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>

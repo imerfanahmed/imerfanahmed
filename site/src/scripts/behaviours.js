@@ -60,19 +60,26 @@
     onScroll();
   }
 
-  const sections = navLinks
-    .map((link) => document.querySelector(link.getAttribute('href')))
+  // Map nav links to their target sections using `data-section`, which is
+  // stable across pages. Parsing the href instead would break on sub-pages,
+  // where links are absolute (`/imerfanahmed/#about`).
+  const sectionLinks = navLinks.filter((l) => l.dataset.section);
+
+  const sections = sectionLinks
+    .map((link) => document.getElementById(link.dataset.section))
     .filter((el) => el instanceof HTMLElement);
 
-  if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
+  if (sections.length && sectionLinks.length && 'IntersectionObserver' in window) {
     const byId = new Map();
-    navLinks.forEach((link) => byId.set(link.getAttribute('href').slice(1), link));
+    for (const link of sectionLinks) byId.set(link.dataset.section, link);
 
     const spy = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
-          navLinks.forEach((l) => l.classList.remove('is-active'));
+          // Only clear links this observer owns, so the Blog link's
+          // `is-active` on sub-pages isn't wiped by a stray callback.
+          sectionLinks.forEach((l) => l.classList.remove('is-active'));
           byId.get(entry.target.id)?.classList.add('is-active');
         }
       },

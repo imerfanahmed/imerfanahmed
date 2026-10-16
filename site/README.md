@@ -89,6 +89,66 @@ feature card, so keep the most impressive one first. Set `href` for a GitHub/rep
 
 ---
 
+## The blog
+
+Write a markdown file, push it, and it appears. There is no registry to update.
+
+1. Create `site/src/content/blog/my-post.md`.
+2. Add frontmatter and write.
+3. Commit and push. GitHub Actions rebuilds and republishes automatically.
+
+The filename becomes the URL: `my-post.md` → `/blog/my-post/`.
+
+### Frontmatter
+
+```yaml
+---
+title: 'Post title'                        # required, ≤120 chars
+description: 'One or two sentences.'       # required, ≤300 chars — used on the
+                                           # index card, meta description and RSS
+pubDate: 2026-10-16                        # required; any date format JS parses
+
+# optional
+updatedDate: 2026-10-20
+tags: ['llm', 'agents']                    # shown as chips on the card and the post
+draft: true                                # stays in the repo, out of the build
+---
+```
+
+Everything markdown supports works: headings, lists, tables, blockquotes, images,
+task lists, footnotes. Code blocks are syntax-highlighted and switch palette with
+the site's light/dark toggle. Posts with four or more `##`/`###` headings get an
+automatic table of contents.
+
+### Conventions
+
+| Convention | Effect |
+| --- | --- |
+| Filename | Becomes the slug |
+| `_`-prefixed files | Ignored entirely — `_template.md` is a safe scaffold |
+| `draft: true` | Visible in `npm run dev`, excluded from production builds |
+| Post order | Newest `pubDate` first, on the index and in the feed |
+
+Copy `site/src/content/blog/_template.md` as a starting point. The feed lives at
+`/rss.xml`, and each post links to the previous and next one automatically.
+
+### Where the pieces live
+
+| File | Role |
+| --- | --- |
+| `src/content.config.ts` | Collection definition and frontmatter schema |
+| `src/lib/blog.ts` | Sorting, draft filtering, reading time, date formatting |
+| `src/pages/blog/index.astro` | The listing page |
+| `src/pages/blog/[slug].astro` | Individual post pages |
+| `src/pages/rss.xml.ts` | The RSS feed |
+| `src/styles/blog.css` | Blog and markdown ("prose") styling |
+| `src/layouts/Blog.astro` | Page shell for blog routes |
+
+If the frontmatter is wrong, the build fails and tells you which file and field —
+nothing broken reaches the live site.
+
+---
+
 ## Adding your photo
 
 Drop a portrait at **`site/public/assets/photo.jpg`** — roughly 5:6 aspect ratio
@@ -175,10 +235,17 @@ site/
 │   ├── robots.txt
 │   └── site.webmanifest
 └── src/
-    ├── data/cv.ts          # ← all content
+    ├── content.config.ts   # blog collection + frontmatter schema
+    ├── content/blog/       # ← write posts here (markdown)
+    ├── data/cv.ts          # ← all CV content
+    ├── lib/blog.ts         # post sorting, drafts, reading time
     ├── layouts/Base.astro  # <head>, SEO, JSON-LD, background, nav
+    ├── layouts/Blog.astro  # shell for blog routes
     ├── pages/index.astro   # section order
+    ├── pages/blog/         # listing + post pages
+    ├── pages/rss.xml.ts    # RSS feed
     ├── components/         # one file per section
     ├── scripts/            # starfield + interactions
-    └── styles/global.css   # design tokens and shared utilities
+    ├── styles/global.css   # design tokens and shared utilities
+    └── styles/blog.css     # blog + markdown (prose) styling
 ```

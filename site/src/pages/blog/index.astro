@@ -1,0 +1,106 @@
+---
+import Blog from '../../layouts/Blog.astro';
+import {
+  getPublishedPosts,
+  getTags,
+  readingTime,
+  formatDate,
+  isoDate,
+} from '../../lib/blog';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const posts = await getPublishedPosts();
+const tags = await getTags();
+
+const pageTitle = 'Blog — Erfan Ahmed Siam';
+const pageDescription =
+  'Notes on applied AI, LLM systems, and the infrastructure that keeps them running.';
+---
+
+<Blog title={pageTitle} description={pageDescription} path="/blog/">
+  <div class="blog-frame">
+    <div class="blog-head">
+      <p class="hud-label section-bar__left">
+        <span class="section-bar__num">07</span>
+        <span aria-hidden="true">/</span>
+        <span>Writing</span>
+      </p>
+      <div class="blog-head__right hud-label">
+        <span>{posts.length} {posts.length === 1 ? 'Post' : 'Posts'}</span>
+        <a class="blog-head__rss" href={`${base}/rss.xml`} type="application/rss+xml">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"></path>
+            <circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"></circle>
+          </svg>
+          RSS
+        </a>
+      </div>
+    </div>
+
+    <div class="blog-intro">
+      <h1 class="blog-intro__title">Notes &amp; write-ups.</h1>
+      <p class="blog-intro__lede">
+        Working notes on applied AI, LLM systems and agentic engineering — mostly things
+        I had to figure out the hard way and would rather not figure out twice.
+      </p>
+
+      {tags.length > 0 && (
+        <ul class="blog-topics" role="list" aria-label="Topics">
+          {tags.map(({ tag, count }) => (
+            <li class="tech-tag">
+              {tag} <span class="blog-tag-count">{count}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+
+    {posts.length > 0 ? (
+      <ul class="post-list" role="list">
+        {posts.map((post) => (
+          <li class="post-card">
+            <div class="post-card__meta">
+              <time class="hud-label post-card__date" datetime={isoDate(post.data.pubDate)}>
+                {formatDate(post.data.pubDate)}
+              </time>
+              <span class="post-card__stats hud-label">
+                {readingTime(post.body)} min read
+              </span>
+              {post.data.draft && <span class="tech-tag tech-tag--accent">Draft</span>}
+            </div>
+
+            <div class="post-card__body">
+              <h2 class="post-card__title">
+                <a href={`${base}/blog/${post.id}/`}>{post.data.title}</a>
+              </h2>
+              <p class="post-card__desc">{post.data.description}</p>
+
+              {post.data.tags.length > 0 && (
+                <ul class="post-card__tags" role="list" aria-label="Tags">
+                  {post.data.tags.map((tag) => (
+                    <li class="tech-tag">{tag}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div class="post-empty">
+        <p class="hud-label">No posts published yet.</p>
+        <p class="post-empty__hint">
+          Add a markdown file to <code>site/src/content/blog/</code> and it appears here.
+        </p>
+      </div>
+    )}
+
+    <div class="post-nav">
+      <a class="post-nav__item" href={`${base}/`}>
+        <span class="hud-label post-nav__label">← Back</span>
+        <span class="post-nav__title">Home</span>
+      </a>
+      <div class="post-nav__item post-nav__item--disabled" aria-hidden="true"></div>
+    </div>
+  </div>
+</Blog>

@@ -1,0 +1,154 @@
+---
+import { render } from 'astro:content';
+import Blog from '../../layouts/Blog.astro';
+import {
+  getPublishedPosts,
+  readingTime,
+  formatDate,
+  isoDate,
+  neighbours,
+} from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post, posts },
+  }));
+}
+
+const { post, posts } = Astro.props;
+const { Content, headings } = await render(post);
+const { prev, next } = neighbours(posts, post);
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const minutes = readingTime(post.body);
+
+// Only show a table of contents when the post is structured enough to
+// benefit from one — a two-heading post is easier to scan than to navigate.
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const showToc = toc.length >= 4;
+---
+
+<Blog
+  title={`${post.data.title} — Erfan Ahmed Siam`}
+  description={post.data.description}
+  path={`/blog/${post.id}/`}
+  ogType="article"
+  publishedTime={isoDate(post.data.pubDate)}
+>
+  <div class="blog-frame">
+    <div class="blog-head">
+      <a class="hud-label post-back" href={`${base}/blog/`}>
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <path d="M15 5l-7 7 7 7" />
+        </svg>
+        All posts
+      </a>
+      <div class="blog-head__right hud-label">
+        <span>{minutes} min read</span>
+      </div>
+    </div>
+
+    <div class="post-shell">
+      <header class="post-header">
+        <p class="hud-label" style="color:var(--fg-faint)">
+          <time datetime={isoDate(post.data.pubDate)}>{formatDate(post.data.pubDate)}</time>
+          {post.data.updatedDate && (
+            <>
+              <span aria-hidden="true"> · </span>
+              <span>updated {formatDate(post.data.updatedDate)}</span>
+            </>
+          )}
+        </p>
+
+        <h1 class="post-header__title">{post.data.title}</h1>
+        <p class="post-header__desc">{post.data.description}</p>
+
+        {post.data.tags.length > 0 && (
+          <ul class="post-header__tags" role="list" aria-label="Tags" style="margin-top:1.15rem">
+            {post.data.tags.map((tag) => (
+              <li class="tech-tag">{tag}</li>
+            ))}
+          </ul>
+        )}
+      </header>
+
+      {showToc && (
+        <nav class="post-toc" aria-labelledby="toc-heading">
+          <p class="hud-label post-toc__label" id="toc-heading">On this page</p>
+          <ul role="list">
+            {toc.map((h) => (
+              <li class:list={['post-toc__item', h.depth === 3 && 'post-toc__item--sub']}>
+                <a href={`#${h.slug}`}>{h.text}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <nav class="post-nav" aria-label="More posts">
+        {prev ? (
+          <a class="post-nav__item" href={`${base}/blog/${prev.id}/`} rel="prev">
+            <span class="hud-label post-nav__label">← Older</span>
+            <span class="post-nav__title">{prev.data.title}</span>
+          </a>
+        ) : (
+          <div class="post-nav__item post-nav__item--disabled" aria-hidden="true"></div>
+        )}
+
+        {next ? (
+          <a class="post-nav__item post-nav__item--next" href={`${base}/blog/${next.id}/`} rel="next">
+            <span class="hud-label post-nav__label">Newer →</span>
+            <span class="post-nav__title">{next.data.title}</span>
+          </a>
+        ) : (
+          <div class="post-nav__item post-nav__item--disabled" aria-hidden="true"></div>
+        )}
+      </nav>
+    </div>
+  </div>
+</Blog>
+
+<style>
+  /* Table of contents: a bordered block that respects the grid aesthetic. */
+  .post-toc {
+    margin-top: clamp(1.6rem, 3vw, 2.2rem);
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+    padding: 1.15rem 1.35rem;
+    max-width: 74ch;
+  }
+
+  .post-toc__label {
+    color: var(--fg-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .post-toc__item {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .post-toc__item--sub {
+    padding-left: 1rem;
+    font-size: 0.855rem;
+  }
+
+  .post-toc__item a {
+    color: var(--fg-muted);
+    transition: color 0.2s var(--ease-soft);
+  }
+
+  .post-toc__item a:hover {
+    color: var(--accent-ink);
+  }
+
+  .prose {
+    margin-top: clamp(1.8rem, 3.5vw, 2.6rem);
+  }
+</style>

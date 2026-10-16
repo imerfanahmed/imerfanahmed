@@ -16,6 +16,18 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: 'viewport',
   },
+  markdown: {
+    // Dual themes so code blocks stay legible when the site's light/dark
+    // toggle flips. blog.css picks the right set of CSS variables.
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark-default',
+      },
+      defaultColor: false,
+      wrap: false,
+    },
+  },
   devToolbar: {
     enabled: false,
   },
