@@ -1,5 +1,5 @@
 ---
-import { experience } from '../data/cv';
+import { experience, jobDuration } from '../data/cv';
 ---
 
 <section class="section" id="work">
@@ -23,9 +23,9 @@ import { experience } from '../data/cv';
         Five years of production, <span class="grad">now in applied AI.</span>
       </h2>
       <p class="section__lede">
-        Currently a Graduate AI Developer at the University of Warwick, researching LLM
-        architectures and building agentic systems — alongside five years of shipping
-        production software across the UK, Canada, the US and Bangladesh.
+        Currently a part-time, remote Graduate AI Developer at the University of Warwick,
+        researching LLM architectures and building agentic systems — alongside five years
+        of shipping production software across the UK, Canada, the US and Bangladesh.
       </p>
     </header>
 
@@ -67,7 +67,12 @@ import { experience } from '../data/cv';
               <p class="hud-label job__location">{job.location}</p>
             </div>
 
-            <p class="hud-label job__period">{job.period}</p>
+            <p class="hud-label job__period">
+              <span class="job__period-dates">{job.period}</span>
+              {jobDuration(job.period) && (
+                <span class="job__duration">{jobDuration(job.period)}</span>
+              )}
+            </p>
           </div>
 
           <!-- Right Engineering Details Column -->
@@ -188,6 +193,24 @@ import { experience } from '../data/cv';
     color: var(--fg-muted);
     padding-top: 1rem;
     border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .job__period-dates {
+    white-space: nowrap;
+  }
+
+  .job__duration {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.45rem;
+    border: 1px solid var(--line);
+    color: var(--accent-ink);
+    font-weight: 700;
+    letter-spacing: 0.08em;
   }
 
   .job__content-col {

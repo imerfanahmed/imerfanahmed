@@ -21,9 +21,9 @@ export const experience: Job[] = [
   {
     role: 'Graduate AI Developer',
     company: 'University of Warwick',
-    location: 'Coventry, United Kingdom',
+    location: 'Remote · United Kingdom',
     period: 'Aug 2026 — Present',
-    kind: 'Full-time',
+    kind: 'Part-time',
     current: true,
     points: ['Research emerging LLM architectures…'],
   },

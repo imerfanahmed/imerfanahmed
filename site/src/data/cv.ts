@@ -9,7 +9,7 @@
 export const profile = {
   name: 'Erfan Ahmed Siam',
   monogram: 'EA',
-  role: 'Graduate AI Developer / Software Engineer',
+  role: 'AI Developer @ University of Warwick / Applied AI, LLMs & Agentic Systems',
   tagline: 'I build systems that stay up.',
   specialties: [
     'Applied LLM',
@@ -21,12 +21,12 @@ export const profile = {
     'Cloud',
     'DevOps',
   ],
-  location: 'Coventry, United Kingdom',
-  locationShort: 'Coventry, UK',
+  location: 'Stoke-on-Trent, United Kingdom',
+  locationShort: 'Stoke-on-Trent, UK',
   email: 'erfan.siam98@gmail.com',
   phone: '+44 7344 085666',
   summary:
-    'Software engineer working at the intersection of applied AI and production infrastructure. At the University of Warwick I research LLM architectures, design agentic systems and automate internal workflows; across 5+ years before that I shipped systems for 100+ UK businesses, from architecture through CI/CD to deployment on Docker, Linux and Go.',
+    'Software engineer working at the intersection of applied AI and production infrastructure. I work part-time and remotely as a Graduate AI Developer at the University of Warwick, where I research LLM architectures, design agentic systems and automate internal workflows; across 5+ years before that I shipped systems for 100+ UK businesses, from architecture through CI/CD to deployment on Docker, Linux and Go.',
   highlights: [
     {
       title: 'Applied LLM research',
@@ -116,18 +116,63 @@ export type Job = {
   href?: string;
 };
 
+const MONTHS: Record<string, number> = {
+  Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+  Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11,
+};
+
+/**
+ * Turns a `period` string like "Aug 2026 — Present" or "Apr 2025 — Jun 2026"
+ * into a human duration such as "1 yr 3 mos". Returns null when the period
+ * can't be parsed, so callers can simply skip rendering.
+ *
+ * The end month is treated inclusively: Apr–Jun spans 3 calendar months.
+ */
+export function jobDuration(period: string, now = new Date()): string | null {
+  const parse = (part: string, isEnd: boolean): { y: number; m: number } | null => {
+    const trimmed = part.trim();
+    if (/^(present|current)/i.test(trimmed)) {
+      return { y: now.getFullYear(), m: now.getMonth() };
+    }
+    const match = trimmed.match(/^([A-Za-z]{3})[a-z]*\s+(\d{4})$/);
+    if (!match) return null;
+    const month = MONTHS[match[1].slice(0, 3).replace(/^./, (c) => c.toUpperCase())];
+    if (month === undefined) return null;
+    return { y: Number(match[2]), m: month };
+  };
+
+  const [startRaw, endRaw] = period.split(/\s*[—–-]\s*/);
+  if (!startRaw || !endRaw) return null;
+
+  const start = parse(startRaw, false);
+  const end = parse(endRaw, true);
+  if (!start || !end) return null;
+
+  // Inclusive month count: Apr 2025 -> Jun 2025 = 3 months.
+  const totalMonths = (end.y - start.y) * 12 + (end.m - start.m) + 1;
+  if (totalMonths <= 0) return null;
+
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+
+  const parts: string[] = [];
+  if (years) parts.push(`${years} yr${years > 1 ? 's' : ''}`);
+  if (months) parts.push(`${months} mo${months > 1 ? 's' : ''}`);
+  return parts.join(' ') || '1 mo';
+}
+
 export const experience: Job[] = [
   {
     role: 'Graduate AI Developer',
     company: 'University of Warwick',
-    location: 'Coventry, United Kingdom',
+    location: 'Remote · United Kingdom',
     period: 'Aug 2026 — Present',
-    kind: 'Full-time',
+    kind: 'Part-time',
     current: true,
     logo: { src: '/assets/logos/warwick.svg', alt: 'University of Warwick', plate: 'light' },
     href: 'https://warwick.ac.uk/',
     blurb:
-      'Research-led engineering within the university: exploring new LLM architectures, designing agentic solutions, and automating internal team workflows.',
+      'Part-time, remote research-led engineering for the university: exploring new LLM architectures, designing agentic solutions, and automating internal team workflows.',
     points: [
       'Research emerging LLM architectures, evaluation methods and prompting strategies, then turn viable ideas into working prototypes.',
       'Act as solution architect for internal AI initiatives — scoping requirements, choosing models and data flow, and defining how success is measured.',

@@ -7,11 +7,12 @@ systems, agentic engineering and production infrastructure.
 [Blog](https://imerfanahmed.github.io/imerfanahmed/blog/) ·
 [CV](https://imerfanahmed.github.io/imerfanahmed/assets/erfan_cv.pdf)
 
-Coventry, United Kingdom · erfan.siam98@gmail.com
+Stoke-on-Trent, United Kingdom · erfan.siam98@gmail.com
 
 ## Now
 
 **Graduate AI Developer** — University of Warwick · Aug 2026 to present
+Part-time, remote.
 
 Research-led engineering within the university. I research emerging LLM
 architectures and evaluation methods, act as solution architect for internal AI
